@@ -29,7 +29,7 @@ export default function Login() {
             <div className="container fade-in visible" style={{ maxWidth: '400px' }}>
                 <div className="glass-card" style={{ padding: '40px', textAlign: 'center' }}>
                     <div style={{ fontSize: '3rem', marginBottom: '10px' }}>🗳️</div>
-                    <h2 className="section-title" style={{ fontSize: '1.8rem', marginBottom: '5px' }}>Welcome to Chunav</h2>
+                    <h2 className="section-title" style={{ fontSize: '1.8rem', marginBottom: '5px' }}>Welcome to <span className="notranslate">Chunav</span></h2>
                     <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '30px' }}>Sign in to continue</p>
                     
                     <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>

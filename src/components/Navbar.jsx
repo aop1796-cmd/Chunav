@@ -57,7 +57,7 @@ export default function Navbar() {
             <div className="container nav-container">
                 <Link to="/" className="brand-logo" onClick={closeMenu}>
                     <img src={logoUrl} alt="Chunav Logo" style={{ height: '32px', marginRight: '10px', verticalAlign: 'middle', borderRadius: '50%' }} />
-                    Chunav
+                    <span className="notranslate">Chunav</span>
                 </Link>
                 
                 <div className={`nav-links ${mobileMenuOpen ? 'active' : ''}`} id="navLinks">
