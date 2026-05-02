@@ -9,7 +9,7 @@ export default function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
+            setScrolled(window.scrollY > 80);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -61,11 +61,11 @@ export default function Navbar() {
                 </Link>
                 
                 <div className={`nav-links ${mobileMenuOpen ? 'active' : ''}`} id="navLinks">
-                    <Link to="/" className="nav-link" onClick={closeMenu}>Home</Link>
-                    <Link to="/quiz" className="nav-link" onClick={closeMenu}>Quiz</Link>
-                    <Link to="/guide" className="nav-link" onClick={closeMenu}>Voter Services Hub</Link>
+                    <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={closeMenu}>Home</Link>
+                    <Link to="/quiz" className={`nav-link ${location.pathname === '/quiz' ? 'active' : ''}`} onClick={closeMenu}>Quiz</Link>
+                    <Link to="/guide" className={`nav-link ${location.pathname === '/guide' ? 'active' : ''}`} onClick={closeMenu}>Voter Services Hub</Link>
                     <div id="google_translate_element" className="translate-widget" onClick={closeMenu}></div>
-                    <Link to="/login" className="nav-link" onClick={closeMenu}>Login</Link>
+                    <Link to="/login" className={`nav-link ${location.pathname === '/login' ? 'active' : ''}`} onClick={closeMenu}>Login</Link>
                     <Link to="/ask-ai" className="btn-ask-ai" onClick={closeMenu}>Ask AI</Link>
                 </div>
 

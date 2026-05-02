@@ -69,8 +69,8 @@ export default function Home() {
                     <p className="fade-in">India's most interactive election education platform.</p>
                     
                     <div className="hero-btns fade-in">
-                        <a href="#timeline" className="btn btn-primary">Explore Timeline</a>
-                        <Link to="/quiz" className="btn btn-outline">Take Quiz</Link>
+                        <a href="#timeline" className="btn btn-primary">Explore Timeline →</a>
+                        <Link to="/quiz" className="btn btn-outline">Take the Quiz</Link>
                     </div>
 
                     <div className="floating-stats fade-in">
@@ -128,6 +128,26 @@ export default function Home() {
                         <div className="body-card glass-card"><div className="body-icon">🗳️</div><h3>EVM & VVPAT</h3><p>Electronic Voting Machine with paper audit trail.</p></div>
                         <div className="body-card glass-card"><div className="body-icon">📰</div><h3>Model Code of Conduct</h3><p>ECI guidelines from announcement to results.</p></div>
                         <div className="body-card glass-card"><div className="body-icon">🪪</div><h3>EPIC Card</h3><p>Voter Photo ID required at polling booth.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="why-vote" className="section-padding">
+                <div className="container">
+                    <h2 className="section-title fade-in">Why Your Vote Matters</h2>
+                    <div className="bodies-grid fade-in">
+                        <div className="body-card glass-card">
+                            <div className="body-icon">🗳️</div>
+                            <h3 style={{ fontSize: '1.2rem' }}>Your vote decides who makes laws for 1.4 billion Indians</h3>
+                        </div>
+                        <div className="body-card glass-card">
+                            <div className="body-icon">📊</div>
+                            <h3 style={{ fontSize: '1.2rem' }}>In 2019, some seats were won by less than 100 votes</h3>
+                        </div>
+                        <div className="body-card glass-card">
+                            <div className="body-icon">💪</div>
+                            <h3 style={{ fontSize: '1.2rem' }}>Every vote is equal — billionaire or farmer</h3>
+                        </div>
                     </div>
                 </div>
             </section>

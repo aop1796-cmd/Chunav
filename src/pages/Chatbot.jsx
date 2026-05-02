@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "YOUR_API_KEY_HERE";
+const ENV_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "YOUR_API_KEY_HERE";
 
 export default function Chatbot() {
+    const [apiKey, setApiKey] = useState(ENV_API_KEY !== "YOUR_API_KEY_HERE" ? ENV_API_KEY : "");
     const [chatMessages, setChatMessages] = useState([
-        { text: "Namaste! Ask me anything about India's election process!", isUser: false }
+        { text: "Namaste! I'm Chetna 🪔 your personal election guide. Ask me anything about India's elections!", isUser: false }
     ]);
     const [chatInput, setChatInput] = useState("");
     const [isTyping, setIsTyping] = useState(false);
@@ -33,9 +34,9 @@ export default function Chatbot() {
         setChatMessages(newMessages);
         setChatInput('');
 
-        if (!GEMINI_API_KEY || GEMINI_API_KEY === "YOUR_API_KEY_HERE") {
+        if (!apiKey || apiKey.trim() === "") {
             setTimeout(() => {
-                setChatMessages(prev => [...prev, { text: "⚠️ Error: API Key not configured. Please open the `.env` file in your code editor and replace 'YOUR_API_KEY_HERE' with a valid Gemini API Key to use the chatbot. Remember to restart the server after doing so.", isUser: false }]);
+                setChatMessages(prev => [...prev, { text: "⚠️ Please enter your Gemini API Key in the field below to chat with me.", isUser: false }]);
             }, 500);
             return;
         }
@@ -43,7 +44,7 @@ export default function Chatbot() {
         setIsTyping(true);
 
         try {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey.trim()}`, {
                 method: "POST",
                 headers: { 
                     "Content-Type": "application/json"
@@ -79,8 +80,8 @@ export default function Chatbot() {
                     <h2 className="section-title">Ask Anything About Elections</h2>
                     <div className="chat-container glass-card" style={{ padding: "0" }}>
                         <div className="chat-header">
-                            <div className="bot-avatar">🤖</div>
-                            <div className="chat-title"><h3>Aarambh Assistant</h3><p>Online</p></div>
+                            <div className="bot-avatar">C</div>
+                            <div className="chat-title"><h3>Chetna</h3><p>Online</p></div>
                         </div>
                         <div className="chat-messages">
                             {chatMessages.map((msg, i) => (
@@ -94,7 +95,7 @@ export default function Chatbot() {
                             <div ref={chatEndRef} />
                         </div>
                         <div className="quick-questions">
-                            {["What is the role of ECI?", "How do I register to vote?", "What is NOTA?", "How does EVM work?", "What is Model Code of Conduct?", "What is VVPAT?"].map((q, i) => (
+                            {["What is ECI?", "How to register to vote?", "What is NOTA?", "How does EVM work?", "What is MCC?", "What is VVPAT?"].map((q, i) => (
                                 <button key={i} className="qq-btn" onClick={() => sendMessageToAI(q)}>{q}</button>
                             ))}
                         </div>
@@ -110,7 +111,21 @@ export default function Chatbot() {
                             <button className="chat-send-btn" onClick={() => sendMessageToAI(chatInput)}>➤</button>
                         </div>
                     </div>
-                    <p className="api-key-warning">Note: AI responses require a valid Gemini API key configuration in the source code.</p>
+                    {(!apiKey || apiKey.trim() === "") && (
+                        <div style={{ marginTop: '20px', textAlign: 'center' }}>
+                            <p className="api-key-warning" style={{ marginBottom: '10px' }}>To use Chetna, please enter your Gemini API Key:</p>
+                            <input 
+                                type="password" 
+                                placeholder="Paste your Gemini API Key here..." 
+                                value={apiKey} 
+                                onChange={(e) => setApiKey(e.target.value)}
+                                style={{
+                                    padding: '10px 15px', borderRadius: '5px', border: '1px solid var(--card-border)', 
+                                    background: 'var(--card-bg)', color: 'var(--white)', width: '100%', maxWidth: '400px'
+                                }}
+                            />
+                        </div>
+                    )}
                 </div>
             </section>
         </div>
