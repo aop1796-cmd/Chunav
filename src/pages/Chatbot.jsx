@@ -44,7 +44,7 @@ export default function Chatbot() {
         setIsTyping(true);
 
         try {
-            const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
+            const response = await fetch("/api/nvidia/v1/chat/completions", {
                 method: "POST",
                 headers: { 
                     "Content-Type": "application/json",
