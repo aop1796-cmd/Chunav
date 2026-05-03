@@ -8,7 +8,10 @@ RUN npm run build
 
 # Stage 2: Serve
 FROM nginx:alpine
+# Copy the build output
 COPY --from=build /app/dist /usr/share/nginx/html
+# Copy custom nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 8080
-CMD ["nginx", "-g", "daemon off;"]
+
+# Use the PORT environment variable provided by Cloud Run
+CMD ["sh", "-c", "sed -i 's/8080/'\"$PORT\"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
