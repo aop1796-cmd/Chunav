@@ -8,16 +8,36 @@ export default function PortalGuide() {
         <div className="portal-guide-page" style={{ paddingTop: '100px', paddingBottom: '50px' }}>
             <div className="container">
                 {/* Unified Gateway Section */}
-                <div className="gateway-section fade-in visible" style={{ textAlign: 'center', marginBottom: '60px' }}>
-                    <h1 className="section-title" style={{ fontFamily: '"Rozha One", serif', fontSize: '3.5rem', color: 'var(--saffron)' }}>
-                        Voter Services Hub
-                    </h1>
-                    <p style={{ maxWidth: '800px', margin: '0 auto 30px', fontSize: '1.2rem', color: 'rgba(255,255,255,0.9)', fontFamily: '"Yatra One", cursive' }}>
-                        Your central gateway to the Election Commission of India. Access official services, register to vote, or learn how to navigate the portal below.
-                    </p>
-                    <a href="https://voters.eci.gov.in/" target="_blank" rel="noopener noreferrer" className="btn btn-primary gateway-btn" style={{ fontSize: '1.4rem', padding: '20px 50px', borderRadius: '50px', boxShadow: '0 10px 30px rgba(232, 84, 26, 0.4)', border: '2px solid var(--gold)', fontFamily: '"Rozha One", serif' }}>
-                        Enter Official Voter Portal <span>→</span>
-                    </a>
+                <div className="gateway-section fade-in visible" style={{ marginBottom: '80px' }}>
+                    <div className="gateway-grid">
+                        <div className="gateway-card desi-card left-card">
+                            <div className="gateway-card-inner">
+                                <div className="gateway-icon">🏛️</div>
+                                <h3>Official Portal</h3>
+                                <p>Direct, secure access to the Election Commission of India's services.</p>
+                            </div>
+                        </div>
+
+                        <div className="gateway-center" style={{ textAlign: 'center' }}>
+                            <h1 className="section-title" style={{ fontFamily: '"Rozha One", serif', fontSize: '3.5rem', color: 'var(--saffron)', margin: '0 auto 20px', paddingBottom: '0' }}>
+                                Voter Services Hub
+                            </h1>
+                            <p style={{ maxWidth: '600px', margin: '0 auto 30px', fontSize: '1.2rem', color: 'rgba(255,255,255,0.9)', fontFamily: '"Yatra One", cursive' }}>
+                                Your central gateway to the Election Commission of India. Access official services, register to vote, or learn how to navigate the portal below.
+                            </p>
+                            <a href="https://voters.eci.gov.in/" target="_blank" rel="noopener noreferrer" className="btn btn-primary gateway-btn">
+                                Enter Official Voter Portal <span>→</span>
+                            </a>
+                        </div>
+
+                        <div className="gateway-card desi-card right-card">
+                            <div className="gateway-card-inner">
+                                <div className="gateway-icon">🇮🇳</div>
+                                <h3>Your Duty</h3>
+                                <p>Every single vote is equal and shapes the future of the nation.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 className="section-title fade-in visible" style={{ fontFamily: '"Rozha One", serif', fontSize: '2.5rem', color: 'var(--white)', marginTop: '80px', marginBottom: '40px' }}>

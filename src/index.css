@@ -31,9 +31,9 @@
 
         /* Utility Classes */
         .container {
-            max-width: 1200px;
+            max-width: 1600px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 30px;
         }
 
         .section-padding {
@@ -253,6 +253,7 @@
         }
 
         .btn {
+            display: inline-block;
             padding: 15px 35px;
             border-radius: 50px;
             font-size: 1.1rem;
@@ -284,6 +285,15 @@
             background-color: var(--white);
             color: var(--dark-navy);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        .gateway-btn {
+            font-size: 1.4rem;
+            padding: 20px 50px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(232, 84, 26, 0.4);
+            border: 2px solid var(--gold);
+            font-family: 'Rozha One', serif;
         }
 
         .floating-stats {
@@ -980,6 +990,59 @@
             border-radius: 5px;
         }
 
+        .gateway-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .gateway-center {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .gateway-card {
+            flex: 1;
+            display: none; /* Hide on mobile by default */
+        }
+
+        .gateway-card-inner {
+            background: var(--dark-navy);
+            padding: 30px 20px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gateway-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
+        }
+
+        .gateway-card-inner h3 {
+            color: var(--gold);
+            font-family: 'Rozha One', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .gateway-card-inner p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        @media (min-width: 992px) {
+            .gateway-card {
+                display: block;
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 { font-size: 4rem; }
@@ -1020,6 +1083,15 @@
             .hero h1 { font-size: 3rem; }
             .hero p { font-size: 1.2rem; }
             .hero-btns { flex-direction: column; }
+            
+            .gateway-btn {
+                padding: 15px 20px;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
             
             .floating-stats {
                 gap: 15px;
