@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
-const ENV_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "YOUR_API_KEY_HERE";
+const ENV_API_KEY = import.meta.env.VITE_XAI_API_KEY || "YOUR_API_KEY_HERE";
 
 export default function Chatbot() {
     const [apiKey, setApiKey] = useState(ENV_API_KEY !== "YOUR_API_KEY_HERE" ? ENV_API_KEY : "");
@@ -36,7 +36,7 @@ export default function Chatbot() {
 
         if (!apiKey || apiKey.trim() === "") {
             setTimeout(() => {
-                setChatMessages(prev => [...prev, { text: "⚠️ Please enter your Gemini API Key in the field below to chat with me.", isUser: false }]);
+                setChatMessages(prev => [...prev, { text: "⚠️ Please enter your xAI API Key in the field below to chat with me.", isUser: false }]);
             }, 500);
             return;
         }
@@ -44,14 +44,17 @@ export default function Chatbot() {
         setIsTyping(true);
 
         try {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey.trim()}`, {
+            const response = await fetch("https://api.x.ai/v1/chat/completions", {
                 method: "POST",
                 headers: { 
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${apiKey.trim()}`
                 },
                 body: JSON.stringify({
-                    contents: [
-                        { role: "user", parts: [{ text: "System prompt: You are a friendly assistant helping Indian citizens understand India's election process. Answer clearly and concisely in 2-4 sentences. Focus only on Indian elections.\n\nUser Question: " + userMessage }] }
+                    model: "grok-beta",
+                    messages: [
+                        { role: "system", content: "You are a friendly assistant helping Indian citizens understand India's election process. Answer clearly and concisely in 2-4 sentences. Focus only on Indian elections." },
+                        { role: "user", content: userMessage }
                     ]
                 })
             });
@@ -61,8 +64,8 @@ export default function Chatbot() {
 
             if (data.error) {
                 setChatMessages(prev => [...prev, { text: `API Error: ${data.error.message}`, isUser: false }]);
-            } else if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-                setChatMessages(prev => [...prev, { text: data.candidates[0].content.parts[0].text, isUser: false }]);
+            } else if (data.choices && data.choices[0] && data.choices[0].message) {
+                setChatMessages(prev => [...prev, { text: data.choices[0].message.content, isUser: false }]);
             } else {
                 setChatMessages(prev => [...prev, { text: "Received an unexpected response format from the API.", isUser: false }]);
             }
@@ -113,10 +116,10 @@ export default function Chatbot() {
                     </div>
                     {(!apiKey || apiKey.trim() === "") && (
                         <div style={{ marginTop: '20px', textAlign: 'center' }}>
-                            <p className="api-key-warning" style={{ marginBottom: '10px' }}>To use Chetna, please enter your Gemini API Key:</p>
+                            <p className="api-key-warning" style={{ marginBottom: '10px' }}>To use Chetna, please enter your xAI API Key:</p>
                             <input 
                                 type="password" 
-                                placeholder="Paste your Gemini API Key here..." 
+                                placeholder="Paste your xAI API Key here..." 
                                 value={apiKey} 
                                 onChange={(e) => setApiKey(e.target.value)}
                                 style={{
